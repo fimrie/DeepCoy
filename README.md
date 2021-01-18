@@ -84,6 +84,10 @@ models/DeepCoy_DEKOIS_model_e10.pickle
 
 Generated molecules can be obtained upon request.
 
+# Examples
+
+An example Jupyter notbook demonstrating the use of DeepCoy to generate and select decoy molecule can be found in the `examples` directory.
+
 # Contact (Questions/Bugs/Requests)
 
 Please submit a Github issue or contact Fergus Imrie [imrie@stats.ox.ac.uk](mailto:imrie@stats.ox.ac.uk).
