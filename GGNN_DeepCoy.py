@@ -53,6 +53,12 @@ class ChemModel(object):
         print("Run %s starting with following parameters:\n%s" % (self.run_id, json.dumps(self.params)))
         random.seed(params['random_seed'])
         np.random.seed(params['random_seed'])
+        
+        # Load subgraph frequency dictionary
+        if args.get('subgraph_freq_file'):
+            self.freq_dict = pickle.load(open(args.get('subgraph_freq_file'),'rb'))
+        else:
+            self.freq_dict = {}
 
         # Load data:
         self.max_num_vertices = 0

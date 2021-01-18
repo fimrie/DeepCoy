@@ -670,7 +670,7 @@ class DenseGGNNChemModel(ChemModel):
                 edges_no_master = d['graph_'+out_direc]
                 incremental_adj_mat,distance_to_others,node_sequence,edge_type_masks,edge_type_labels,local_stop, edge_masks, edge_labels, overlapped_edge_features, new_compound_frequencies, new_compound_frequencies_edge=\
                         construct_incremental_graph_freqs(self.params["dataset"], edges_no_master, chosen_bucket_size,
-                                            len(nodes_no_master), nodes_no_master, self.params, is_training_data, freq_dict, initial_idx=starting_idx)
+                                            len(nodes_no_master), nodes_no_master, self.params, is_training_data, self.freq_dict, initial_idx=starting_idx)
                 if self.params["sample_transition"] and list_idx > 0:
                     incremental_results[res_idx][-1]=[x+y for x, y in zip(incremental_results[res_idx][-1], [incremental_adj_mat,distance_to_others,
                                             node_sequence,edge_type_masks,edge_type_labels,local_stop, edge_masks, edge_labels, overlapped_edge_features, 
@@ -1126,10 +1126,6 @@ if __name__ == "__main__":
     args = docopt(__doc__)
     dataset=args.get('--dataset')
     try:
-        if args.get('subgraph_freq_file'):
-            freq_dict = pickle.load(open(args.get('subgraph_freq_file'),'rb'))
-        else:
-            freq_dict = {}
         model = DenseGGNNChemModel(args)
         evaluation = False
         if evaluation:

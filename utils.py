@@ -12,7 +12,6 @@ from rdkit.Chem import rdFMCS
 from collections import defaultdict, deque
 import os
 import heapq
-import planarity
 from rdkit.Chem import Crippen
 import math
 
@@ -79,25 +78,6 @@ def check_edge_prob(dataset):
         print(ep)
         print("label")
         print(epl)
-
-# check whether a graph is planar or not
-def is_planar(location, adj_list, is_dense=False):
-    if is_dense:
-        new_adj_list=defaultdict(list)
-        for x in range(len(adj_list)):
-            for y in range(len(adj_list)):
-                if adj_list[x][y]==1:
-                    new_adj_list[x].append((y,1))
-        adj_list=new_adj_list
-    edges=[]
-    seen=set()
-    for src, l in adj_list.items():
-        for dst, e in l:
-            if (dst, src) not in seen:
-                edges.append((src,dst))
-                seen.add((src,dst))
-    edges+=[location, (location[1], location[0])]
-    return planarity.is_planar(edges)
 
 def check_edge_type_prob(filter=None):
     with open('intermediate_results_%s' % dataset, 'rb') as f:
@@ -318,23 +298,6 @@ def need_kekulize(mol):
         if bond_dict[str(bond.GetBondType())] >= 3:
             return True
     return False
-
-def check_planar(dataset):
-    with open("generated_smiles_%s" % dataset, 'rb') as f:
-        all_smiles=set(pickle.load(f))
-    total_non_planar=0
-    for smiles in all_smiles:
-        try:
-            nodes, edges=to_graph(smiles, dataset)
-        except:
-            continue
-        edges=[(src, dst) for src, e, dst in edges]
-        if edges==[]:
-            continue
-
-        if not planarity.is_planar(edges):
-            total_non_planar+=1
-    return len(all_smiles), total_non_planar
 
 def count_atoms(dataset):
     with open("generated_smiles_%s" % dataset, 'rb') as f:
