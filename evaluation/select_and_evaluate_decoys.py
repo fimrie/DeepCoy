@@ -34,7 +34,7 @@ from joblib import Parallel, delayed
 from docopt import docopt
 
 # Worker function
-def select_and_evaluate_decoys(f, file_loc='./', output_loc='./', dataset='dude', num_cand_dec_per_act=100, num_dec_per_act=50, max_idx_cmpd=10000):
+def select_and_evaluate_decoys(f, file_loc='./', output_loc='./', dataset='dude', num_cand_dec_per_act=100, num_dec_per_act=50, max_idx_cmpd=10000, min_active_size=10):
     print("Processing: ", f)
     dec_results = [f]
     dec_results.append(dataset)
@@ -293,7 +293,7 @@ if __name__ == "__main__":
 
     # Select decoys and evaluate
     with Parallel(n_jobs=n_cores, backend='multiprocessing') as parallel:
-        results = parallel(delayed(select_and_evaluate_decoys)(f,file_loc=file_loc, output_loc=output_loc, dataset=dataset, num_cand_dec_per_act=num_cand_dec_per_act, num_dec_per_act=num_dec_per_act, max_idx_cmpd=max_idx_cmpd) for f in res_files)
+        results = parallel(delayed(select_and_evaluate_decoys)(f,file_loc=file_loc, output_loc=output_loc, dataset=dataset, num_cand_dec_per_act=num_cand_dec_per_act, num_dec_per_act=num_dec_per_act, max_idx_cmpd=max_idx_cmpd, min_active_size=min_active_size) for f in res_files)
 
     # Write performance results
     for dec_results in results:
