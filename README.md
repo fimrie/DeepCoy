@@ -2,7 +2,25 @@
 
 ![](DeepCoy.png)
 
-This repository contains our implementation of Generating Property-Matched Decoy Molecules Using Deep Learning (DeepCoy). 
+This repository contains our implementation of [Generating Property-Matched Decoy Molecules Using Deep Learning](https://doi.org/10.1093/bioinformatics/btab080) (DeepCoy). 
+
+If you found DeepCoy useful, please cite our paper:
+
+Imrie F, Bradley AR, Deane CM. Generating property-matched decoy molecules using deep learning. Bioinformatics. 2021
+
+```
+@article{Imrie2021DeepCoy,
+    author = {Imrie, Fergus and Bradley, Anthony R and Deane, Charlotte M},
+    title = "{Generating property-matched decoy molecules using deep learning}",
+    journal = {Bioinformatics},
+    year = {2021},
+    month = {02},
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/btab080},
+    url = {https://doi.org/10.1093/bioinformatics/btab080},
+    eprint = {https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btab080/36297301/btab080.pdf},
+}
+```
 
 # Acknowledgements
 
