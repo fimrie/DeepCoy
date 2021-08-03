@@ -65,7 +65,7 @@ python DeepCoy.py --dataset zinc --config '{"number_of_generation_per_valid": 10
 To generate molecules with a pretrained model, use
 
 ```
-python DeepCoy.py --restore models/DeepCoy_DUDE_model_e09.pickle --dataset zinc --config '{"generation": true, "number_of_generation_per_valid": 1000, "batch_size": 1, "train_file": "data/molecules_zinc_decoys_valid.json", "valid_file": "data/molecules_zinc_dekois_valid.json", "output_name": "output/DeepCoy_generated_decoys_zinc_dekois_valid.txt"}'
+python DeepCoy.py --restore models/DeepCoy_DUDE_model_e09.pickle --dataset zinc --config '{"generation": true, "number_of_generation_per_valid": 1000, "batch_size": 1, "train_file": "data/molecules_zinc_dekois_valid.json", "valid_file": "data/molecules_zinc_dekois_valid.json", "output_name": "output/DeepCoy_generated_decoys_zinc_dekois_valid.txt"}'
 ```
 
 The output is of the following format:
