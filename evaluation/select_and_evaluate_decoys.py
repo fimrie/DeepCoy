@@ -230,7 +230,7 @@ def select_and_evaluate_decoys(f, file_loc='./', output_loc='./', dataset='dude'
     # ML model performance
     try:
         dec_results.extend(list(decoy_utils.calc_xval_performance(actives_feat, decoys_feat, n_jobs=1)))
-    else:
+    except:
         dec_results.extend([-1, -1])
         print("Unable to assess ML model prediction. Check there are sufficient active molecules if these metrics are desired.")
 
