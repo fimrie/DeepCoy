@@ -26,7 +26,7 @@ import random
 from docopt import docopt
 from align_molecules import align_smiles_by_MCS_it
 
-dataset = 'zinc'
+dataset = 'zinc' # Change to zinc_phosphorus if necessary
 
 def read_file(file_path, reverse=False):
     with open(file_path, 'r') as f:

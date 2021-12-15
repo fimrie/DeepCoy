@@ -59,6 +59,8 @@ You can also prepare multiple files for testing at once using `prepare_dataset.p
 python prepare_dataset.py --data_path PATH_TO_DATA --save_dir OUTPUT_LOCATION
 ```
 
+Note: To prepare phosphorus containing compounds, you will need to change line 29 of `prepare_data.py` or line 27 of `prepare_dataset.py` as indicated in the respective file.
+
 # Contact (Questions/Bugs/Requests)
 
-Please submit a Github issue or contact Fergus Imrie [imrie@stats.ox.ac.uk](mailto:imrie@stats.ox.ac.uk).
+Please submit a Github issue or contact either Fergus Imrie or the Oxford Protein Informatics Group (OPIG) [deane@stats.ox.ac.uk](mailto:deane@stats.ox.ac.uk).

@@ -100,7 +100,12 @@ models/DeepCoy_DUDE_model_e09.pickle
 models/DeepCoy_DEKOIS_model_e10.pickle
 ```
 
-Generated molecules can be obtained upon request.
+In addition, we provide a model that incorporates phosphorus:
+```
+models/DeepCoy_DUDE_phosphorus_model_e10.pickle
+```
+
+Generated molecules can also be downloaded from the [OPIG website](http://opig.stats.ox.ac.uk/resources).
 
 # Examples
 
@@ -108,4 +113,4 @@ An example Jupyter notbook demonstrating the use of DeepCoy to generate and sele
 
 # Contact (Questions/Bugs/Requests)
 
-Please submit a Github issue or contact Fergus Imrie [imrie@stats.ox.ac.uk](mailto:imrie@stats.ox.ac.uk).
+Please submit a Github issue or contact either Fergus Imrie or the Oxford Protein Informatics Group (OPIG) [deane@stats.ox.ac.uk](mailto:deane@stats.ox.ac.uk).

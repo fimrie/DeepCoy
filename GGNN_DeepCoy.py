@@ -55,10 +55,12 @@ class ChemModel(object):
         np.random.seed(params['random_seed'])
         
         # Load subgraph frequency dictionary
-        if args.get('subgraph_freq_file'):
-            self.freq_dict = pickle.load(open(args.get('subgraph_freq_file'),'rb'))
+        if params['subgraph_freq_file']:
+            self.freq_dict = pickle.load(open(params['subgraph_freq_file'],'rb'))
+            print("Loaded subgraph frequency dictionary from %s" % params['subgraph_freq_file'])
         else:
             self.freq_dict = {}
+            print("Subgraph frequency dictionary not used.")
 
         # Load data:
         self.max_num_vertices = 0

@@ -5,7 +5,7 @@ Usage:
 
 Options:
     -h --help                Show this screen
-    --dataset NAME           Dataset name: zinc, qm9, cep
+    --dataset NAME           Dataset name: zinc, zinc_phosphorus
     --config-file FILE       Hyperparameter configuration file path (in JSON format)
     --config CONFIG          Hyperparameter configuration dictionary (in JSON format)
     --log_dir NAME           log dir name
@@ -996,7 +996,7 @@ class DenseGGNNChemModel(ChemModel):
                                                 sampled_node_symbol, real_length,
                                                 random_normal_states, random_normal_states_in, elements, num_vertices)
             # If multiple starting points, select best only by total_log_prob
-            if self.params["dataset"]=='zinc' and new_mol is not None:
+            if (self.params["dataset"]=='zinc' or self.params["dataset"]=='zinc_phosphorus') and new_mol is not None:
                 all_mol.append((0, total_log_prob, new_mol))
         # Select one out
         best_mol = select_best(all_mol)

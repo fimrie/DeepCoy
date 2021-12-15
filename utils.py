@@ -39,7 +39,13 @@ def dataset_info(dataset): #qm9, zinc, cep
                  'number_to_atom': {0: 'Br', 1: 'C', 2: 'Cl', 3: 'F', 4: 'H', 5:'I', 6:'N', 7:'N', 8:'N', 9:'O', 10:'O', 11:'S', 12:'S', 13:'S'},
                  'bucket_sizes': np.array([28,31,33,35,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,53,55,58,84]) 
                }
-    
+    elif dataset=='zinc_phosphorus':
+        return { 'atom_types': ['Br1(0)', 'C4(0)', 'Cl1(0)', 'F1(0)', 'H1(0)', 'I1(0)',
+                'N2(-1)', 'N3(0)', 'N4(1)', 'O1(-1)', 'O2(0)', 'S2(0)','S4(0)', 'S6(0)', 'P5(0)'],
+                 'maximum_valence': {0: 1, 1: 4, 2: 1, 3: 1, 4: 1, 5:1, 6:2, 7:3, 8:4, 9:1, 10:2, 11:2, 12:4, 13:6, 14:5},
+                 'number_to_atom': {0: 'Br', 1: 'C', 2: 'Cl', 3: 'F', 4: 'H', 5:'I', 6:'N', 7:'N', 8:'N', 9:'O', 10:'O', 11:'S', 12:'S', 13:'S', 14:'P'},
+                 'bucket_sizes': np.array([28,31,33,35,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,53,55,58,84])
+               }
     elif dataset=="cep":
         return { 'atom_types': ["C", "S", "N", "O", "Se", "Si"],
                  'maximum_valence': {0: 4, 1: 2, 2: 3, 3: 2, 4: 2, 5: 4},
@@ -47,7 +53,7 @@ def dataset_info(dataset): #qm9, zinc, cep
                  'bucket_sizes': np.array([25,28,29,30, 32, 33,34,35,36,37,38,39,43,46])
                }
     else:
-        print("the datasets in use are qm9|zinc|cep")
+        print("the datasets in use are qm9|zinc|zinc_phosphorus|cep")
         exit(1)
 
 # add one edge to adj matrix
@@ -234,7 +240,7 @@ def add_atoms(new_mol, node_symbol, dataset):
     for number in node_symbol:
         if dataset=='qm9' or dataset=='cep':
             idx=new_mol.AddAtom(Chem.Atom(dataset_info(dataset)['number_to_atom'][number]))
-        elif dataset=='zinc':
+        elif dataset=='zinc' or dataset=='zinc_phosphorus':
             new_atom = Chem.Atom(dataset_info(dataset)['number_to_atom'][number])            
             charge_num=int(dataset_info(dataset)['atom_types'][number].split('(')[1].strip(')'))
             new_atom.SetFormalCharge(charge_num)
@@ -354,7 +360,7 @@ def to_graph(smiles, dataset):
     for atom in mol.GetAtoms():
         if dataset=='qm9' or dataset=="cep":
             nodes.append(onehot(dataset_info(dataset)['atom_types'].index(atom.GetSymbol()), len(dataset_info(dataset)['atom_types'])))
-        elif dataset=='zinc': # transform using "<atom_symbol><valence>(<charge>)"  notation
+        elif dataset=='zinc' or dataset=='zinc_phosphorus': # transform using "<atom_symbol><valence>(<charge>)"  notation
             symbol = atom.GetSymbol()
             valence = atom.GetTotalValence()
             charge = atom.GetFormalCharge()
@@ -390,7 +396,7 @@ def to_graph_mol(mol, dataset):
     for atom in mol.GetAtoms():
         if dataset=='qm9' or dataset=="cep":
             nodes.append(onehot(dataset_info(dataset)['atom_types'].index(atom.GetSymbol()), len(dataset_info(dataset)['atom_types'])))
-        elif dataset=='zinc': # transform using "<atom_symbol><valence>(<charge>)"  notation
+        elif dataset=='zinc' or dataset=='zinc_phosphorus': # transform using "<atom_symbol><valence>(<charge>)"  notation
             symbol = atom.GetSymbol()
             valence = atom.GetTotalValence()
             charge = atom.GetFormalCharge()
