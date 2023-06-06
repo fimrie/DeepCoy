@@ -9,18 +9,12 @@ Options:
     --save_dir NAME          Path to save directory
 """
 
-import sys, os
+import os
+import sys
+
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-from rdkit import Chem
-from rdkit.Chem import rdmolops
-from rdkit.Chem import rdFMCS
-import glob
 import json
-import numpy as np
-from utils import bond_dict, dataset_info, need_kekulize, to_graph, to_graph_mol, graph_to_adj_mat
-import utils
-import pickle
-import random
+from utils import to_graph_mol
 from docopt import docopt
 from align_molecules import align_smiles_by_MCS_it
 
