@@ -49,6 +49,7 @@ def read_file(file_path, reverse=False):
 def preprocess(raw_data, dataset, name, save_dir=''):
     print('Parsing smiles as graphs.')
     processed_data = []
+    max_size = max(dataset_info(dataset)['bucket_sizes'])-1
     
     fails = 0
     total = len(raw_data)
@@ -59,6 +60,10 @@ def preprocess(raw_data, dataset, name, save_dir=''):
             continue
         nodes_in, edges_in = to_graph_mol(mol_in, dataset)
         nodes_out, edges_out = to_graph_mol(mol_out, dataset)
+        # Check molecule not too large
+        if max(len(nodes_in), len(nodes_out)) > max_size:
+            fails +=1
+            continue
         if min(len(edges_in), len(edges_out)) <= 0:
             fails +=1
             continue
